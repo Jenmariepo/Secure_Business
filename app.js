@@ -37,7 +37,7 @@
   const esc = value => String(value).replace(/[&<>"']/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
   const badge = (value, kind) => '<span class="' + kind + '">' + esc(value) + '</span>';
   const incidentTable = rows => rows.map(r => '<tr class="filter-row"><td><div class="incident-title">' + esc(r[1]) + '</div><div class="incident-id">' + esc(r[0]) + '</div></td><td>' + badge(r[2], 'severity-badge ' + (r[2] === "Crítico" || r[2] === "Alto" ? "high" : r[2] === "Medio" ? "medium" : "low")) + '</td><td>' + badge(r[3], 'status-badge ' + (r[3] === "Abierto" ? "open" : r[3] === "Resuelto" ? "resolved" : "progress")) + '</td><td>' + esc(r[4]) + '</td><td>' + esc(r[5]) + '</td><td><button class="row-menu" aria-label="Más opciones">···</button></td></tr>').join("");
-  const simpleTable = (rows, classes) => rows.map(row => '<tr class="filter-row">' + row.map((cell, i) => '<td>' + (i === 0 ? '<span class="incident-title">' + esc(cell) + '</span>' : i === row.length - 1 && classes ? badge(cell, classes(cell)) : esc(cell)) + '</td>').join("") + '</tr>').join("");
+  const simpleTable = (rows, classes, badgeIndex) => rows.map(row => '<tr class="filter-row">' + row.map((cell, i) => '<td>' + (i === 0 ? '<span class="incident-title">' + esc(cell) + '</span>' : i === (badgeIndex === undefined ? row.length - 1 : badgeIndex) && classes ? badge(cell, classes(cell)) : esc(cell)) + '</td>').join("") + '</tr>').join("");
   function heading(title, subtitle, action) {
     return '<div class="page-heading"><div><p class="eyebrow">CENTRO DE SEGURIDAD</p><h1>' + title + '</h1><p>' + subtitle + '</p></div><div class="heading-actions"><button class="date-filter" data-action="date">▦ &nbsp; Últimos 30 días &nbsp;⌄</button>' + (action || '') + '</div></div>';
   }
@@ -48,12 +48,12 @@
     return '<div class="panel-heading"><div class="table-title"><h2>' + title + '</h2><p>' + subtitle + '</p></div><button class="view-all" data-page="' + page + '">' + link + ' →</button></div>';
   }
   function dashboard() {
-    return heading("Buenos días, Nash <span class=\\"wave\\">✳</span>", "Este es el estado de seguridad de NovaTech Solutions.", '<button class="primary-button" data-page="incidents"><span class="button-plus">＋</span> Nuevo incidente</button>') +
+    return heading("Buenos días, Nash <span class=\"wave\">✳</span>", "Este es el estado de seguridad de NovaTech Solutions.", '<button class="primary-button" data-page="incidents"><span class="button-plus">＋</span> Nuevo incidente</button>') +
       '<section class="stats-grid">' +
       stat("Incidentes activos", "12", '<span class="trend-down">↓ 8.2%</span> vs. mes anterior', "◉", "teal") +
       stat("Activos protegidos", "248", '<span class="trend-up">↑ 12</span> incorporados este mes', "▧", "blue") +
       stat("Vulnerabilidades", "08", '<span class="trend-down">↓ 3</span> desde la última revisión', "◇", "amber") +
-      stat("Puntuación de riesgo", "72<span class=\\"stat-suffix\\">/100</span>", '<span class="trend-up">↑ 4.5%</span> mejora este mes', "△", "purple") + '</section>' +
+      stat("Puntuación de riesgo", "72<span class=\"stat-suffix\">/100</span>", '<span class="trend-up">↑ 4.5%</span> mejora este mes', "△", "purple") + '</section>' +
       '<section class="dashboard-grid"><article class="panel"><div class="panel-heading"><div><h2>Panorama de seguridad</h2><p>Actividad de incidentes y vulnerabilidades durante el periodo</p></div><div class="legend"><span class="legend-item"><i class="legend-dot"></i>Incidentes</span><span class="legend-item"><i class="legend-dot blue-dot"></i>Vulnerabilidades</span></div></div>' +
       '<div class="chart-wrap"><div class="chart-labels-y"><span>40</span><span>30</span><span>20</span><span>10</span><span>0</span></div><div class="chart-grid-lines"><span></span><span></span><span></span><span></span><span></span></div><svg class="chart-svg" viewBox="0 0 600 170" preserveAspectRatio="none" aria-label="Gráfica de actividad"><defs><linearGradient id="areaFill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#159c84" stop-opacity=".18"/><stop offset="1" stop-color="#159c84" stop-opacity="0"/></linearGradient></defs><path class="chart-area" d="M0 131 C45 125 50 85 100 94 S160 119 200 82 S250 78 300 91 S350 52 400 61 S450 91 500 40 S550 53 600 24 L600 170 L0 170Z"/><path class="chart-line" d="M0 131 C45 125 50 85 100 94 S160 119 200 82 S250 78 300 91 S350 52 400 61 S450 91 500 40 S550 53 600 24"/><path class="chart-line secondary" d="M0 145 C45 137 55 124 100 132 S155 100 200 116 S255 135 300 110 S355 130 400 101 S455 111 500 85 S555 100 600 72"/><circle class="chart-point" cx="500" cy="40" r="4"/><circle class="chart-point secondary" cx="500" cy="85" r="4"/></svg><div class="chart-labels-x"><span>1 nov.</span><span>5 nov.</span><span>10 nov.</span><span>15 nov.</span><span>20 nov.</span><span>25 nov.</span><span>30 nov.</span></div></div></article>' +
       '<article class="panel"><div class="panel-heading"><div><h2>Incidentes por gravedad</h2><p>Distribución actual</p></div><button class="panel-link" data-page="incidents">Ver todos</button></div><div class="severity-list">' +
@@ -71,13 +71,13 @@
   function tablePage(key) {
     const config = {
       incidents: ["Incidentes", "Registra, asigna y da seguimiento a los incidentes de seguridad.", "＋ Nuevo incidente", ["INCIDENTE","GRAVEDAD","ESTADO","RESPONSABLE","FECHA"], incidentTable(incidentRows)],
-      assets: ["Activos", "Inventario de dispositivos y recursos tecnológicos de la organización.", "＋ Añadir activo", ["ACTIVO","TIPO","DEPARTAMENTO","ESTADO","ÚLTIMA REVISIÓN"], simpleTable(assetRows, v => "status-badge " + (v === "Activo" ? "resolved" : "progress"))],
-      vulnerabilities: ["Vulnerabilidades", "Prioriza hallazgos y controla su proceso de remediación.", "＋ Registrar hallazgo", ["HALLAZGO","ACTIVO AFECTADO","CRITICIDAD","ESTADO","FECHA LÍMITE"], simpleTable(vulnRows, v => "severity-badge " + (v === "Crítica" || v === "Alta" ? "high" : "medium"))],
-      risks: ["Riesgos", "Evalúa y prioriza los riesgos de seguridad de NovaTech Solutions.", "＋ Nueva evaluación", ["RIESGO","PROBABILIDAD","NIVEL","TRATAMIENTO"], simpleTable(riskRows, v => "risk-badge " + (v === "Crítico" || v === "Alto" ? "high" : "medium"))],
-      audit: ["Auditoría", "Historial verificable de acciones realizadas en tu organización.", "⇩ Exportar", ["USUARIO","ACCIÓN","REGISTRO","FECHA","TIPO"], simpleTable(auditRows, v => "status-badge " + (v === "Acceso" ? "progress" : "resolved"))]
+      assets: ["Activos", "Inventario de dispositivos y recursos tecnológicos de la organización.", "＋ Añadir activo", ["CÓDIGO","ACTIVO","TIPO","DEPARTAMENTO","ESTADO","ÚLTIMA REVISIÓN"], simpleTable(assetRows, v => "status-badge " + (v === "Activo" ? "resolved" : "progress"), 4)],
+      vulnerabilities: ["Vulnerabilidades", "Prioriza hallazgos y controla su proceso de remediación.", "＋ Registrar hallazgo", ["CÓDIGO","HALLAZGO","ACTIVO AFECTADO","CRITICIDAD","ESTADO","FECHA LÍMITE"], simpleTable(vulnRows, v => "severity-badge " + (v === "Crítica" || v === "Alta" ? "high" : "medium"), 3)],
+      risks: ["Riesgos", "Evalúa y prioriza los riesgos de seguridad de NovaTech Solutions.", "＋ Nueva evaluación", ["CÓDIGO","RIESGO","PROBABILIDAD","NIVEL","TRATAMIENTO"], simpleTable(riskRows, v => "risk-badge " + (v === "Crítico" || v === "Alto" ? "high" : "medium"), 3)],
+      audit: ["Auditoría", "Historial verificable de acciones realizadas en tu organización.", "⇩ Exportar", ["USUARIO","ACCIÓN","REGISTRO","FECHA","TIPO"], simpleTable(auditRows, v => "status-badge " + (v === "Acceso" ? "progress" : "resolved"), 4)]
     }[key];
     const rows = config[4];
-    return heading(config[0], config[1], '<button class="primary-button" data-action="' + (key === "audit" ? "export" : "new-record") + '"><span class="button-plus">' + config[2].slice(0,1) + '</span>' + config[2].slice(2) + '</button>') +
+    return (key === "risks" ? "" : heading(config[0], config[1], '<button class="primary-button" data-action="' + (key === "audit" ? "export" : "new-record") + '"><span class="button-plus">' + config[2].slice(0,1) + '</span>' + config[2].slice(2) + '</button>')) +
       '<div class="module-toolbar"><div class="toolbar-left"><select class="filter-select" aria-label="Filtrar por estado"><option value="">Todos los estados</option><option>Abierto</option><option>En revisión</option><option>En curso</option><option>Resuelto</option><option>Pendiente</option></select><select class="filter-select" aria-label="Filtrar por gravedad"><option value="">Todas las gravedades</option><option>Crítica</option><option>Alta</option><option>Media</option><option>Baja</option></select></div><div class="toolbar-right"><label class="table-search"><span>⌕</span><input class="table-filter" type="search" placeholder="Buscar registro..."></label><button class="secondary-button" data-action="filter">☷ &nbsp; Filtros</button></div></div>' +
       '<article class="table-panel full-table"><div class="table-scroll"><table class="data-table"><thead><tr>' + config[3].map(h => '<th>' + h + '</th>').join("") + '</tr></thead><tbody>' + rows + '</tbody></table></div><div class="table-footer"><span>Mostrando ' + (key === "incidents" ? "4 de 12" : "4 de 24") + ' registros</span><span>‹ &nbsp; 1 &nbsp; 2 &nbsp; 3 &nbsp; … &nbsp; 6 &nbsp; ›</span></div></article>';
   }
@@ -159,7 +159,7 @@
     }
     if (event.target.matches("#global-search")) {
       const query = event.target.value.trim().toLocaleLowerCase("es");
-      if (query) document.querySelectorAll(".filter-row").forEach(row => row.hidden = !row.innerText.toLocaleLowerCase("es").includes(query));
+      document.querySelectorAll(".filter-row").forEach(row => row.hidden = !row.innerText.toLocaleLowerCase("es").includes(query));
     }
   });
   document.addEventListener("change", event => {
