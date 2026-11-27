@@ -455,6 +455,9 @@
     menuToggle.setAttribute("aria-label",open ? "Cerrar menú" : "Abrir menú");
     if (open) sidebar.querySelector(".side-link:not(:disabled)")?.focus();
   });
+  sidebar.addEventListener("click",event => {
+    if (event.target.closest(".brand")) closeMobileMenu(false);
+  });
   backdrop.addEventListener("click",() => closeMobileMenu(true));
   document.addEventListener("keydown",event => {
     if (event.key === "Escape" && document.body.classList.contains("nav-open")) closeMobileMenu(true);
