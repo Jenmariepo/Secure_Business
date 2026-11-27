@@ -9,6 +9,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-yEPZ7jP9S0QKiUQ0m3jjsO4ProIW7wvR9gXkI7JOGa2XVsw53Yke2bsdkBbjmmiX" crossorigin="anonymous">
   <link rel="stylesheet" href="styles.css">
   <script src="app.js" defer></script>
+  <script src="phases34.js" defer></script>
 </head>
 <body>
   <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -44,14 +45,15 @@
         <div class="sidebar-caption nav-caption">MÓDULOS</div>
         <a class="side-link" href="#incidents" data-page="incidents"><svg class="icon"><use href="#i-alert"/></svg><span>Incidentes</span></a>
         <a class="side-link" href="#assets" data-page="assets"><svg class="icon"><use href="#i-box"/></svg><span>Activos</span></a>
-        <button class="side-link future-link" type="button" disabled><svg class="icon"><use href="#i-bug"/></svg><span>Vulnerabilidades</span></button>
-        <button class="side-link future-link" type="button" disabled><svg class="icon"><use href="#i-chart"/></svg><span>Riesgos</span></button>
+        <a class="side-link" href="#vulnerabilities" data-page="vulnerabilities"><svg class="icon"><use href="#i-bug"/></svg><span>Vulnerabilidades</span></a>
+        <a class="side-link" href="#risks" data-page="risks"><svg class="icon"><use href="#i-chart"/></svg><span>Riesgos</span></a>
+        <a class="side-link" href="#alerts" data-page="alerts"><svg class="icon"><use href="#i-bell"/></svg><span>Alertas</span></a>
         <button class="side-link future-link" type="button" disabled><svg class="icon"><use href="#i-file"/></svg><span>Informes</span></button>
-        <button class="side-link future-link" type="button" disabled><svg class="icon"><use href="#i-clock"/></svg><span>Auditoría</span></button>
+        <a class="side-link" href="#audit" data-page="audit"><svg class="icon"><use href="#i-clock"/></svg><span>Auditoría</span></a>
         <button class="side-link future-link" type="button" disabled><svg class="icon"><use href="#i-users"/></svg><span>Equipo</span></button>
       </nav>
       <div class="sidebar-bottom">
-        <div class="phase-note"><span class="phase-note-mark"><svg class="icon"><use href="#i-check"/></svg></span><span><strong>Fase 2 · Operación principal</strong><small>Activos e incidentes · demo</small></span></div>
+        <div class="phase-note"><span class="phase-note-mark"><svg class="icon"><use href="#i-check"/></svg></span><span><strong>Fases 1–4 · Operación visual</strong><small>Módulos empresariales · demo</small></span></div>
         <div class="profile-row"><span class="profile-avatar">NM</span><span class="profile-copy"><strong>Nash Méndez</strong><small>Administrador · Demo</small></span></div>
       </div>
     </aside>
@@ -119,10 +121,15 @@
             <div class="posture-bars"><div><div><span>Incidentes gestionados</span><b>76%</b></div><div class="progress"><div class="progress-bar progress-teal" style="width:76%"></div></div></div><div><div><span>Activos inventariados</span><b>88%</b></div><div class="progress"><div class="progress-bar progress-blue" style="width:88%"></div></div></div><div><div><span>Vulnerabilidades corregidas</span><b>54%</b></div><div class="progress"><div class="progress-bar progress-amber" style="width:54%"></div></div></div></div>
           </article></div>
         </section>
-        <footer class="page-footer"><span>© 2026 SecureBusiness</span><span><i class="system-dot"></i> Estado visual · datos ficticios</span><span>Fases 1 y 2 · Base visual y operación</span></footer>
+        <section class="row g-3 dashboard-row dashboard-phase4" aria-label="Riesgos y actividad reciente">
+          <div class="col-12 col-xl-5"><article class="surface-card risk-summary-card"><div class="section-heading"><div><h2>Distribución de riesgos</h2><p>Evaluación demostrativa · probabilidad × impacto</p></div><a class="inline-link" href="#risks">Ver matriz <span>→</span></a></div><div class="risk-summary-body"><div class="risk-donut" role="img" aria-label="Distribución ficticia: 1 crítico, 3 altos, 1 moderado y ninguno bajo"><div><strong>5</strong><span>riesgos</span></div></div><div class="risk-legend"><span><i class="risk-dot risk-dot-critical"></i>Crítico <b>1</b></span><span><i class="risk-dot risk-dot-high"></i>Alto <b>3</b></span><span><i class="risk-dot risk-dot-medium"></i>Moderado <b>1</b></span><span><i class="risk-dot risk-dot-low"></i>Bajo <b>0</b></span></div></div></article></div>
+          <div class="col-12 col-xl-7"><article class="surface-card audit-summary-card"><div class="section-heading"><div><h2>Actividad de auditoría</h2><p>Eventos recientes del espacio · datos de demostración</p></div><a class="inline-link" href="#audit">Ver registros <span>→</span></a></div><div class="audit-mini-list"><div><span class="audit-mini-icon">NM</span><p><strong>Nash Méndez</strong><span>Actualizó un incidente · INC-2026-048</span></p><time>09:42</time></div><div><span class="audit-mini-icon audit-mini-blue">LR</span><p><strong>Luis Ramírez</strong><span>Consultó el inventario de activos</span></p><time>09:18</time></div><div><span class="audit-mini-icon audit-mini-amber">AT</span><p><strong>Ana Torres</strong><span>Registró una alerta de phishing</span></p><time>08:55</time></div></div></article></div>
+        </section>
+        <footer class="page-footer"><span>© 2026 SecureBusiness</span><span><i class="system-dot"></i> Estado visual · datos ficticios</span><span>Fases 1 a 4 · Plataforma de demostración</span></footer>
       </div>
       <div class="container-fluid content-wrap module-view" id="module-view" hidden></div>
     </main>
   </div>
 </body>
 </html>
+
