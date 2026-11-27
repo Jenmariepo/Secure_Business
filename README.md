@@ -1,21 +1,39 @@
-# SecureBusiness
+# SecureBusiness · Fase 1 del frontend
 
-Frontend responsive inicial para SecureBusiness, una plataforma empresarial de gestión de ciberseguridad.
+Base visual responsive para el dashboard de gestión de ciberseguridad de SecureBusiness. Esta fase establece la identidad visual, los estilos reutilizables, la navegación principal y la composición del dashboard.
 
-## Prototipo
+## Tecnologías
 
-La interfaz está hecha con HTML, CSS y JavaScript nativo para poder abrirse directamente en un navegador. Incluye una experiencia de dashboard en español con navegación a incidentes, activos, vulnerabilidades, riesgos, SecureAI, informes, auditoría y equipo. Los datos mostrados son demostrativos y no representan información real.
+- HTML semántico, CSS y JavaScript nativo.
+- Bootstrap 5.3.9 para grid, utilidades y componentes base; CSS de la aplicación en `styles.css`.
+- La documentación del proyecto define Laravel MVC y MySQL para el sistema completo. El repositorio actual aún no contiene un esqueleto Laravel, por lo que esta entrega permanece como frontend estático y no modifica backend ni base de datos.
 
 ## Ejecutar
 
-Abre `index.html` en un navegador moderno. No requiere instalación ni compilación.
+Abre `index.html` en un navegador moderno. También puedes servir la carpeta con un servidor estático, por ejemplo:
 
-## Alcance actual
+```sh
+python -m http.server 8000
+```
 
-Este prototipo presenta la capa visual e interacciones de navegación. No incluye autenticación real, persistencia, conexión con Laravel/MySQL, carga de evidencias ni llamadas a una API de IA. La integración deberá conectarse a las rutas y servicios del backend cuando estén disponibles.
+Después visita `http://localhost:8000`. Bootstrap se carga desde jsDelivr, por lo que requiere conexión a internet.
+
+## Incluido en Fase 1
+
+- Paleta de colores y variables CSS de SecureBusiness.
+- Sidebar, navegación superior e indicador de organización de demostración.
+- Dashboard responsive con indicadores, gráfica SVG, alertas visuales y resumen de incidentes.
+- Menú lateral móvil accesible mediante teclado y botón de navegación.
+- Datos ficticios identificados como demostración.
+
+Los enlaces de otros módulos aparecen deshabilitados como referencia de navegación futura. No se implementa su funcionalidad.
 
 ## Estructura
 
-- `index.html`: shell de la aplicación y navegación principal.
-- `styles.css`: estilos responsive y componentes visuales.
-- `app.js`: vistas, datos de demostración e interacciones del prototipo.
+- `index.html`: shell semántico y contenido del dashboard.
+- `styles.css`: paleta, componentes y breakpoints responsive.
+- `app.js`: comportamiento accesible del menú móvil.
+
+## Pendiente para fases posteriores
+
+Conectar datos reales y permisos desde Laravel, integrar la plantilla con Blade cuando exista la estructura backend y definir los módulos en las fases siguientes.
