@@ -54,7 +54,7 @@
   const sidebar = document.getElementById("sidebar");
   const backdrop = document.getElementById("sidebar-backdrop");
   const menuToggle = document.getElementById("menu-toggle");
-  const pageNames = {dashboard:"Resumen",assets:"Activos",incidents:"Incidentes",vulnerabilities:"Vulnerabilidades",risks:"Riesgos",alerts:"Alertas",audit:"Auditoría"};
+  const pageNames = {dashboard:"Resumen",assets:"Activos",incidents:"Incidentes",vulnerabilities:"Vulnerabilidades",risks:"Riesgos",alerts:"Alertas",audit:"Auditoría",registration:"Registro y licencias",subscriptions:"Suscripciones",terms:"Términos y condiciones"};
   const people = ["Nash Méndez","Laura Méndez","Carlos Ruiz","Ana Torres","Luis Ramírez","Marta Santos"];
   const categories = ["Servidor","Portátil","Red","Base de datos","Software","Otro"];
   const incidentCategories = ["Acceso no autorizado","Malware","Phishing","Actividad sospechosa","Disponibilidad","Pérdida de dispositivo","Otro"];
@@ -400,6 +400,9 @@
     } else if (["vulnerabilities","risks","alerts","audit"].includes(page) && window.SBPhase34) {
       moduleView.innerHTML = window.SBPhase34.render(page);
       window.SBPhase34.activate(page);
+    } else if (["registration","subscriptions","terms"].includes(page) && window.SBAccountModules) {
+      moduleView.innerHTML = window.SBAccountModules.render(page);
+      window.SBAccountModules.activate(page);
     }
     if (page !== "dashboard") window.scrollTo({top:0,behavior:"smooth"});
   }
@@ -505,4 +508,3 @@
   ensureDialogAndToasts();
   renderRoute();
 })();
-
