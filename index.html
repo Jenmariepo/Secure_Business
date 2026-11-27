@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0e1829">
+  <meta name="description" content="SecureBusiness, plataforma de gestión de ciberseguridad empresarial.">
+  <title>SecureBusiness | Centro de seguridad</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#dashboard" aria-label="SecureBusiness inicio">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M16 2.8 27 7v8.2c0 6.8-4.6 11.4-11 14-6.4-2.6-11-7.2-11-14V7l11-4.2Z"/><path d="m11.1 15.8 3.2 3.2 6.9-7"/></svg></span>
+        <span class="brand-copy"><strong>secure<span>business</span></strong><small>SECURITY CENTER</small></span>
+      </a>
+      <div class="workspace-label">ESPACIO DE TRABAJO</div>
+      <button class="org-switcher" type="button" data-action="organization">
+        <span class="org-avatar">N</span><span class="org-meta"><b>NovaTech Solutions</b><small>Plan empresarial</small></span><span class="chevron">⌄</span>
+      </button>
+      <nav class="main-nav" aria-label="Navegación principal">
+        <div class="nav-group-label">GENERAL</div>
+        <a class="nav-item active" href="#dashboard" data-page="dashboard"><span class="nav-icon">◫</span>Resumen</a>
+        <a class="nav-item" href="#incidents" data-page="incidents"><span class="nav-icon">◉</span>Incidentes <span class="nav-count">4</span></a>
+        <a class="nav-item" href="#assets" data-page="assets"><span class="nav-icon">▧</span>Activos</a>
+        <a class="nav-item" href="#vulnerabilities" data-page="vulnerabilities"><span class="nav-icon">◇</span>Vulnerabilidades <span class="nav-count alert-count">3</span></a>
+        <a class="nav-item" href="#risks" data-page="risks"><span class="nav-icon">△</span>Riesgos</a>
+        <div class="nav-group-label nav-spaced">GESTIÓN</div>
+        <a class="nav-item" href="#secureai" data-page="secureai"><span class="nav-icon">✳</span>SecureAI <span class="new-pill">IA</span></a>
+        <a class="nav-item" href="#reports" data-page="reports"><span class="nav-icon">▤</span>Informes</a>
+        <a class="nav-item" href="#audit" data-page="audit"><span class="nav-icon">◷</span>Auditoría</a>
+        <a class="nav-item" href="#team" data-page="team"><span class="nav-icon">♙</span>Equipo</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="plan-card"><div class="plan-top"><span>Uso mensual</span><b>68%</b></div><div class="progress-track"><span style="width:68%"></span></div><small>Renueva el 1 de diciembre</small><button type="button" data-action="upgrade">Ver plan <span>↗</span></button></div>
+        <button class="profile" type="button" data-action="profile"><span class="profile-avatar">NM</span><span class="profile-meta"><b>Nash Méndez</b><small>Administrador</small></span><span class="profile-menu">···</span></button>
+      </div>
+    </aside>
+    <main class="main-area">
+      <header class="topbar">
+        <button class="icon-button menu-button" type="button" id="menu-toggle" aria-label="Abrir navegación">☰</button>
+        <div class="breadcrumbs"><span>NovaTech Solutions</span><i>/</i><b id="breadcrumb-current">Resumen</b></div>
+        <div class="topbar-actions">
+          <label class="search-box"><span>⌕</span><input id="global-search" type="search" placeholder="Buscar en SecureBusiness..." aria-label="Buscar"><kbd>⌘ K</kbd></label>
+          <button class="icon-button help-button" type="button" aria-label="Ayuda" data-action="help">?</button>
+          <button class="icon-button notification-button" type="button" aria-label="Notificaciones" data-action="notifications">♧<span></span></button>
+          <span class="top-divider"></span><button class="top-avatar" type="button" data-action="profile" aria-label="Perfil de Nash Méndez">NM</button>
+        </div>
+      </header>
+      <div class="content-wrap">
+        <div id="page-content"></div>
+        <footer class="page-footer"><span>© 2026 SecureBusiness</span><span><i class="status-dot"></i> Todos los sistemas operativos</span><a href="#help" data-action="help">Centro de ayuda ↗</a></footer>
+      </div>
+    </main>
+  </div>
+  <div class="mobile-scrim" id="mobile-scrim"></div>
+  <div class="toast-region" id="toast-region" aria-live="polite"></div>
+</body>
+</html>
