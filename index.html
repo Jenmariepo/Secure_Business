@@ -3,59 +3,126 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0e1829">
-  <meta name="description" content="SecureBusiness, plataforma de gestión de ciberseguridad empresarial.">
-  <title>SecureBusiness | Centro de seguridad</title>
+  <meta name="theme-color" content="#0d1829">
+  <meta name="description" content="SecureBusiness — centro de seguridad empresarial.">
+  <title>SecureBusiness | Resumen de seguridad</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-yEPZ7jP9S0QKiUQ0m3jjsO4ProIW7wvR9gXkI7JOGa2XVsw53Yke2bsdkBbjmmiX" crossorigin="anonymous">
   <link rel="stylesheet" href="styles.css">
   <script src="app.js" defer></script>
 </head>
 <body>
+  <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 20 6v5.5c0 5-3.3 8.4-8 10.5-4.7-2.1-8-5.5-8-10.5V6l8-3Z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="5" rx="1.5"/><rect x="13" y="10" width="8" height="11" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 4 21 20H3L12 4Z"/><path d="M12 9v5m0 3h.01"/></symbol>
+    <symbol id="i-box" viewBox="0 0 24 24"><path d="m12 3 9 5v8l-9 5-9-5V8l9-5Z"/><path d="m3.5 8.3 8.5 4.8 8.5-4.8M12 13v8"/></symbol>
+    <symbol id="i-bug" viewBox="0 0 24 24"><path d="M9 8V6a3 3 0 0 1 6 0v2m-9 2H4m2 4H4m2 4H4m16-8h-2m2 4h-2m2 4h-2M7 9h10v8a5 5 0 0 1-10 0V9Zm1-5 2 2m6-2-2 2"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 19V5m0 14h17"/><path d="m7 15 4-4 3 2 6-7"/></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24"><path d="M6 3h8l5 5v13H6z"/><path d="M14 3v6h5M9 13h7m-7 4h7"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20v-1a6 6 0 0 1 12 0v1H3Zm13-9a3 3 0 1 0 0-6m1 9a5 5 0 0 1 4 5"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9Zm-8 12h4"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+  </svg>
   <div class="app-shell">
-    <aside class="sidebar" id="sidebar">
-      <a class="brand" href="#dashboard" aria-label="SecureBusiness inicio">
-        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M16 2.8 27 7v8.2c0 6.8-4.6 11.4-11 14-6.4-2.6-11-7.2-11-14V7l11-4.2Z"/><path d="m11.1 15.8 3.2 3.2 6.9-7"/></svg></span>
+    <aside class="sidebar" id="sidebar" aria-label="Barra lateral">
+      <a class="brand" href="#dashboard" aria-label="SecureBusiness, resumen">
+        <span class="brand-mark"><svg class="icon"><use href="#i-shield"/></svg></span>
         <span class="brand-copy"><strong>secure<span>business</span></strong><small>SECURITY CENTER</small></span>
       </a>
-      <div class="workspace-label">ESPACIO DE TRABAJO</div>
-      <button class="org-switcher" type="button" data-action="organization">
-        <span class="org-avatar">N</span><span class="org-meta"><b>NovaTech Solutions</b><small>Plan empresarial</small></span><span class="chevron">⌄</span>
-      </button>
-      <nav class="main-nav" aria-label="Navegación principal">
-        <div class="nav-group-label">GENERAL</div>
-        <a class="nav-item active" href="#dashboard" data-page="dashboard"><span class="nav-icon">◫</span>Resumen</a>
-        <a class="nav-item" href="#incidents" data-page="incidents"><span class="nav-icon">◉</span>Incidentes <span class="nav-count">4</span></a>
-        <a class="nav-item" href="#assets" data-page="assets"><span class="nav-icon">▧</span>Activos</a>
-        <a class="nav-item" href="#vulnerabilities" data-page="vulnerabilities"><span class="nav-icon">◇</span>Vulnerabilidades <span class="nav-count alert-count">3</span></a>
-        <a class="nav-item" href="#risks" data-page="risks"><span class="nav-icon">△</span>Riesgos</a>
-        <div class="nav-group-label nav-spaced">GESTIÓN</div>
-        <a class="nav-item" href="#secureai" data-page="secureai"><span class="nav-icon">✳</span>SecureAI <span class="new-pill">IA</span></a>
-        <a class="nav-item" href="#reports" data-page="reports"><span class="nav-icon">▤</span>Informes</a>
-        <a class="nav-item" href="#audit" data-page="audit"><span class="nav-icon">◷</span>Auditoría</a>
-        <a class="nav-item" href="#team" data-page="team"><span class="nav-icon">♙</span>Equipo</a>
+      <div class="sidebar-caption">ESPACIO DE TRABAJO</div>
+      <div class="org-switcher">
+        <span class="org-avatar">N</span>
+        <span class="org-copy"><strong>NovaTech Solutions</strong><small>Organización de demostración</small></span>
+        <span class="org-caret" aria-hidden="true">⌄</span>
+      </div>
+      <nav class="side-nav" aria-label="Navegación principal">
+        <a class="side-link is-active" href="#dashboard" aria-current="page"><svg class="icon"><use href="#i-grid"/></svg><span>Resumen</span></a>
+        <div class="sidebar-caption nav-caption">MÓDULOS</div>
+        <button class="side-link future-link" type="button" disabled><svg class="icon"><use href="#i-alert"/></svg><span>Incidentes</span></button>
+        <button class="side-link future-link" type="button" disabled><svg class="icon"><use href="#i-box"/></svg><span>Activos</span></button>
+        <button class="side-link future-link" type="button" disabled><svg class="icon"><use href="#i-bug"/></svg><span>Vulnerabilidades</span></button>
+        <button class="side-link future-link" type="button" disabled><svg class="icon"><use href="#i-chart"/></svg><span>Riesgos</span></button>
+        <button class="side-link future-link" type="button" disabled><svg class="icon"><use href="#i-file"/></svg><span>Informes</span></button>
+        <button class="side-link future-link" type="button" disabled><svg class="icon"><use href="#i-clock"/></svg><span>Auditoría</span></button>
+        <button class="side-link future-link" type="button" disabled><svg class="icon"><use href="#i-users"/></svg><span>Equipo</span></button>
       </nav>
       <div class="sidebar-bottom">
-        <div class="plan-card"><div class="plan-top"><span>Uso mensual</span><b>68%</b></div><div class="progress-track"><span style="width:68%"></span></div><small>Renueva el 1 de diciembre</small><button type="button" data-action="upgrade">Ver plan <span>↗</span></button></div>
-        <button class="profile" type="button" data-action="profile"><span class="profile-avatar">NM</span><span class="profile-meta"><b>Nash Méndez</b><small>Administrador</small></span><span class="profile-menu">···</span></button>
+        <div class="phase-note"><span class="phase-note-mark"><svg class="icon"><use href="#i-check"/></svg></span><span><strong>Fase 1 · Base visual</strong><small>Dashboard y sistema de estilos</small></span></div>
+        <div class="profile-row"><span class="profile-avatar">NM</span><span class="profile-copy"><strong>Nash Méndez</strong><small>Administrador · Demo</small></span></div>
       </div>
     </aside>
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
     <main class="main-area">
       <header class="topbar">
-        <button class="icon-button menu-button" type="button" id="menu-toggle" aria-label="Abrir navegación">☰</button>
-        <div class="breadcrumbs"><span>NovaTech Solutions</span><i>/</i><b id="breadcrumb-current">Resumen</b></div>
-        <div class="topbar-actions">
-          <label class="search-box"><span>⌕</span><input id="global-search" type="search" placeholder="Buscar en SecureBusiness..." aria-label="Buscar"><kbd>⌘ K</kbd></label>
-          <button class="icon-button help-button" type="button" aria-label="Ayuda" data-action="help">?</button>
-          <button class="icon-button notification-button" type="button" aria-label="Notificaciones" data-action="notifications">♧<span></span></button>
-          <span class="top-divider"></span><button class="top-avatar" type="button" data-action="profile" aria-label="Perfil de Nash Méndez">NM</button>
+        <button class="menu-toggle btn" id="menu-toggle" type="button" aria-label="Abrir menú" aria-controls="sidebar" aria-expanded="false"><svg class="icon"><use href="#i-menu"/></svg></button>
+        <div class="breadcrumbs"><span>NovaTech Solutions</span><span class="crumb-divider">/</span><strong>Resumen</strong></div>
+        <div class="topbar-right">
+          <span class="demo-tag"><span></span>Demostración</span>
+          <span class="topbar-separator"></span>
+          <span class="topbar-user" aria-label="Usuario de demostración">NM</span>
         </div>
       </header>
-      <div class="content-wrap">
-        <div id="page-content"></div>
-        <footer class="page-footer"><span>© 2026 SecureBusiness</span><span><i class="status-dot"></i> Todos los sistemas operativos</span><a href="#help" data-action="help">Centro de ayuda ↗</a></footer>
+      <div class="container-fluid content-wrap" id="dashboard">
+        <section class="page-heading">
+          <div><p class="eyebrow">JUEVES, 26 DE NOVIEMBRE DE 2026</p><h1>Resumen de seguridad</h1><p class="page-subtitle">Vista general del estado de ciberseguridad de tu organización.</p></div>
+          <span class="period-chip">Últimos 30 días <span aria-hidden="true">⌄</span></span>
+        </section>
+        <section class="row g-3 stats-grid" aria-label="Indicadores de seguridad">
+          <div class="col-12 col-sm-6 col-xl-3"><article class="stat-card h-100"><div class="stat-top"><span>Incidentes activos</span><span class="stat-icon tone-coral"><svg class="icon"><use href="#i-alert"/></svg></span></div><div class="stat-value">12</div><div class="stat-meta"><span class="trend trend-good">↓ 8.2%</span> respecto al mes anterior</div></article></div>
+          <div class="col-12 col-sm-6 col-xl-3"><article class="stat-card h-100"><div class="stat-top"><span>Activos registrados</span><span class="stat-icon tone-blue"><svg class="icon"><use href="#i-box"/></svg></span></div><div class="stat-value">248</div><div class="stat-meta"><span class="trend trend-neutral">+12</span> en el último mes</div></article></div>
+          <div class="col-12 col-sm-6 col-xl-3"><article class="stat-card h-100"><div class="stat-top"><span>Vulnerabilidades abiertas</span><span class="stat-icon tone-amber"><svg class="icon"><use href="#i-bug"/></svg></span></div><div class="stat-value">08</div><div class="stat-meta"><span class="trend trend-good">↓ 3</span> respecto al mes anterior</div></article></div>
+          <div class="col-12 col-sm-6 col-xl-3"><article class="stat-card h-100"><div class="stat-top"><span>Nivel de seguridad</span><span class="stat-icon tone-violet"><svg class="icon"><use href="#i-shield"/></svg></span></div><div class="stat-value">72<span class="stat-denom">/100</span></div><div class="stat-meta"><span class="trend trend-good">↑ 4.5%</span> respecto al mes anterior</div></article></div>
+        </section>
+        <section class="row g-3 dashboard-row">
+          <div class="col-12 col-xl-8"><article class="surface-card chart-card h-100">
+            <div class="section-heading"><div><h2>Actividad de seguridad</h2><p>Incidentes y vulnerabilidades registradas · datos ficticios</p></div><div class="chart-legend"><span><i class="legend-dot dot-teal"></i>Incidentes</span><span><i class="legend-dot dot-blue"></i>Vulnerabilidades</span></div></div>
+            <div class="chart-container" role="img" aria-label="Gráfica demostrativa de actividad de seguridad durante los últimos siete días">
+              <div class="axis-labels"><span>20</span><span>15</span><span>10</span><span>5</span><span>0</span></div>
+              <div class="chart-plot"><div class="grid-lines"><i></i><i></i><i></i><i></i><i></i></div>
+                <svg viewBox="0 0 700 220" preserveAspectRatio="none" aria-hidden="true">
+                  <defs><linearGradient id="chartFill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#159b83" stop-opacity=".18"/><stop offset="1" stop-color="#159b83" stop-opacity="0"/></linearGradient></defs>
+                  <path class="area-fill" d="M0 154 C48 147 64 116 100 127 S157 151 200 112 S255 97 300 120 S353 83 400 91 S453 126 500 71 S554 82 600 55 S662 73 700 30 L700 220 L0 220Z"/>
+                  <path class="line-teal" d="M0 154 C48 147 64 116 100 127 S157 151 200 112 S255 97 300 120 S353 83 400 91 S453 126 500 71 S554 82 600 55 S662 73 700 30"/>
+                  <path class="line-blue" d="M0 186 C50 180 62 159 100 166 S157 132 200 148 S254 171 300 140 S353 161 400 132 S456 147 500 115 S553 130 600 103 S658 115 700 88"/>
+                  <circle class="chart-marker teal-marker" cx="600" cy="55" r="5"/><circle class="chart-marker blue-marker" cx="600" cy="103" r="5"/>
+                </svg>
+                <div class="x-axis"><span>20 nov.</span><span>21 nov.</span><span>22 nov.</span><span>23 nov.</span><span>24 nov.</span><span>25 nov.</span><span>26 nov.</span></div>
+              </div>
+            </div>
+          </article></div>
+          <div class="col-12 col-xl-4"><article class="surface-card alerts-card h-100">
+            <div class="section-heading"><div><h2>Alertas recientes</h2><p>Elementos para revisar</p></div><span class="alert-counter">3</span></div>
+            <div class="alert-list">
+              <article class="alert-item"><span class="alert-symbol alert-critical"><svg class="icon"><use href="#i-alert"/></svg></span><div class="alert-copy"><strong>Incidente crítico pendiente</strong><p>Intento de acceso no autorizado</p><small>Hace 18 min · Incidente</small></div><span class="alert-severity severity-critical">Crítica</span></article>
+              <article class="alert-item"><span class="alert-symbol alert-warning"><svg class="icon"><use href="#i-bug"/></svg></span><div class="alert-copy"><strong>Vulnerabilidad por corregir</strong><p>OpenSSL desactualizado · Servidor</p><small>Hace 2 h · Vulnerabilidad</small></div><span class="alert-severity severity-high">Alta</span></article>
+              <article class="alert-item"><span class="alert-symbol alert-info"><svg class="icon"><use href="#i-box"/></svg></span><div class="alert-copy"><strong>Revisión de activo próxima</strong><p>Portátil de Finanzas 04</p><small>Hoy · Activo</small></div><span class="alert-severity severity-medium">Media</span></article>
+            </div>
+            <div class="alert-footnote"><svg class="icon"><use href="#i-check"/></svg> Resumen visual con información ficticia</div>
+          </article></div>
+        </section>
+        <section class="row g-3 dashboard-row dashboard-lower">
+          <div class="col-12 col-xl-8"><article class="surface-card incidents-card">
+            <div class="section-heading"><div><h2>Incidentes recientes</h2><p>Vista resumida · datos de demostración</p></div><span class="subtle-label">4 registros</span></div>
+            <div class="table-responsive"><table class="table align-middle mb-0 dashboard-table"><thead><tr><th>INCIDENTE</th><th>GRAVEDAD</th><th>ESTADO</th><th>REPORTADO</th></tr></thead><tbody>
+              <tr><td><strong>Intento de acceso no autorizado</strong><small>INC-2026-048</small></td><td><span class="severity-pill severity-critical">Crítica</span></td><td><span class="status-pill status-open"><i></i>Abierto</span></td><td>Hoy, 09:42</td></tr>
+              <tr><td><strong>Correo de phishing reportado</strong><small>INC-2026-047</small></td><td><span class="severity-pill severity-high">Alta</span></td><td><span class="status-pill status-review"><i></i>En revisión</span></td><td>Hoy, 08:16</td></tr>
+              <tr><td><strong>Equipo con actividad inusual</strong><small>INC-2026-046</small></td><td><span class="severity-pill severity-medium">Media</span></td><td><span class="status-pill status-review"><i></i>En revisión</span></td><td>Ayer, 16:30</td></tr>
+            </tbody></table></div>
+          </article></div>
+          <div class="col-12 col-xl-4"><article class="surface-card posture-card h-100">
+            <div class="section-heading"><div><h2>Estado general</h2><p>Indicador demostrativo</p></div></div>
+            <div class="posture-score"><div class="score-ring"><div><strong>72</strong><span>de 100</span></div></div><div><strong>Protección moderada</strong><p>Hay elementos pendientes de revisión en este espacio de demostración.</p></div></div>
+            <div class="posture-bars"><div><div><span>Incidentes gestionados</span><b>76%</b></div><div class="progress"><div class="progress-bar progress-teal" style="width:76%"></div></div></div><div><div><span>Activos inventariados</span><b>88%</b></div><div class="progress"><div class="progress-bar progress-blue" style="width:88%"></div></div></div><div><div><span>Vulnerabilidades corregidas</span><b>54%</b></div><div class="progress"><div class="progress-bar progress-amber" style="width:54%"></div></div></div></div>
+          </article></div>
+        </section>
+        <footer class="page-footer"><span>© 2026 SecureBusiness</span><span><i class="system-dot"></i> Estado visual · datos ficticios</span><span>Fase 1 · Base visual</span></footer>
       </div>
     </main>
   </div>
-  <div class="mobile-scrim" id="mobile-scrim"></div>
-  <div class="toast-region" id="toast-region" aria-live="polite"></div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/js/bootstrap.bundle.min.js" integrity="sha384-WyOxWvTyr1QaMPfiPJSv76iReVthorl5uWlFtZPyK0IEB0hGzo9y5Bp9mYanr8Bu" crossorigin="anonymous"></script>
 </body>
 </html>
