@@ -38,7 +38,7 @@
   const getAsset = id => state.assets.find(item => item.id === id);
   const getIncident = id => state.incidents.find(item => item.id === id);
   const selected = (value,current) => value === current ? " selected" : "";
-  const statusSlug = value => value.toLowerCase().replaceAll(" ","-");
+  const statusSlug = value => value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replaceAll(" ","-");
 
   function ensureDialogAndToasts() {
     if (!document.getElementById("record-dialog")) {
@@ -85,7 +85,7 @@
   }
 
   function pageHeading(title,description,actionLabel,action) {
-    return '<section class="page-heading module-page-heading"><div><p class="eyebrow">FASE 2 · OPERACIÓN PRINCIPAL</p><h1>' + title + '</h1><p class="page-subtitle">' + description + '</p></div><div class="module-heading-actions"><span class="demo-note"><i></i> Datos ficticios · cambios temporales</span><button class="btn btn-primary app-primary-button" type="button" data-action="' + action + '">' + icon("plus") + '<span>' + actionLabel + '</span></button></div></section>';
+    return '<section class="page-heading module-page-heading"><div><p class="eyebrow">FASE 2 · OPERACIÓN PRINCIPAL</p><h1>' + title + '</h1><p class="page-subtitle">' + description + '</p></div><div class="module-heading-actions"><span class="demo-note"><i></i> Datos ficticios · cambios temporales</span><button class="btn btn-primary app-primary-button" type="button" data-action="' + action + '">' + '<span class="button-plus" aria-hidden="true">＋</span><span>' + actionLabel + '</span></button></div></section>';
   }
 
   function statCard(label,value,caption,tone,mark) {
