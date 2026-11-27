@@ -16,16 +16,45 @@
     {id:"INC-2026-045",title:"Pérdida de dispositivo móvil",category:"Pérdida de dispositivo",severity:"Baja",priority:"Normal",status:"Resuelto",reporter:"Ana Torres",assignee:"Ana Torres",assetId:"AST-005",reportedAt:"Ayer, 11:05",description:"Se reportó la pérdida temporal de un dispositivo móvil de la organización.",history:[{when:"Ayer, 11:05",actor:"Ana Torres",note:"Se confirmó la recuperación del dispositivo y se cerró el seguimiento."}]},
     {id:"INC-2026-044",title:"Interrupción breve del servicio",category:"Disponibilidad",severity:"Alta",priority:"Alta",status:"Contenido",reporter:"Luis Ramírez",assignee:"Luis Ramírez",assetId:"AST-003",reportedAt:"24 nov. 2026, 14:20",description:"El servicio presentó una interrupción breve durante una revisión programada.",history:[{when:"24 nov. 2026, 14:20",actor:"Luis Ramírez",note:"Servicio restaurado; se mantiene observación."}]}
   ];
+  const initialVulnerabilities = [
+    {id:"VUL-2026-008",title:"Biblioteca OpenSSL desactualizada",cve:"CVE-2025-15467",assetId:"AST-001",severity:"Crítica",status:"Abierta",owner:"Luis Ramírez",detectedAt:"Hoy, 08:20",description:"La versión instalada de OpenSSL requiere una actualización de seguridad.",recommendation:"Actualizar el paquete a la última versión estable y validar los servicios dependientes."},
+    {id:"VUL-2026-007",title:"Parche de sistema operativo pendiente",cve:"CVE-2025-22119",assetId:"AST-003",severity:"Alta",status:"En remediación",owner:"Marta Santos",detectedAt:"Ayer, 15:10",description:"El firewall requiere instalar una actualización recomendada por el fabricante.",recommendation:"Aplicar el parche en ventana de mantenimiento y revisar las reglas de acceso."},
+    {id:"VUL-2026-006",title:"Cifrado débil en servicio interno",cve:"Sin CVE asignado",assetId:"AST-004",severity:"Alta",status:"Abierta",owner:"Nash Méndez",detectedAt:"25 nov. 2026",description:"Un servicio interno permite una configuración de cifrado que debe endurecerse.",recommendation:"Deshabilitar suites heredadas y comprobar la compatibilidad de clientes."},
+    {id:"VUL-2026-005",title:"Dependencia web con versión antigua",cve:"CVE-2025-09102",assetId:"AST-001",severity:"Media",status:"En remediación",owner:"Luis Ramírez",detectedAt:"24 nov. 2026",description:"Una dependencia del servidor de aplicaciones está fuera de soporte recomendado.",recommendation:"Actualizar la dependencia y ejecutar validaciones de regresión."},
+    {id:"VUL-2026-004",title:"Configuración de respaldo expuesta",cve:"Sin CVE asignado",assetId:"AST-006",severity:"Baja",status:"Resuelta",owner:"Carlos Ruiz",detectedAt:"20 nov. 2026",description:"Un recurso de configuración necesitaba limitar su acceso al equipo de infraestructura.",recommendation:"Mantener revisión periódica de permisos y registrar los cambios."}
+  ];
+  const initialRisks = [
+    {id:"RSK-2026-011",title:"Interrupción del servicio principal",category:"Disponibilidad",probability:4,impact:5,owner:"Luis Ramírez",assetId:"AST-001",treatment:"Mitigar",measures:"Probar restauración de respaldos y documentar el procedimiento de recuperación."},
+    {id:"RSK-2026-010",title:"Acceso indebido a información financiera",category:"Confidencialidad",probability:3,impact:5,owner:"Nash Méndez",assetId:"AST-002",treatment:"Mitigar",measures:"Revisar permisos, reforzar autenticación y realizar una revisión periódica de accesos."},
+    {id:"RSK-2026-009",title:"Fallo de equipo perimetral",category:"Continuidad",probability:3,impact:4,owner:"Marta Santos",assetId:"AST-003",treatment:"Reducir",measures:"Mantener firmware al día y validar configuración de redundancia."},
+    {id:"RSK-2026-008",title:"Pérdida de dispositivo corporativo",category:"Activos",probability:2,impact:3,owner:"Ana Torres",assetId:"AST-005",treatment:"Aceptar",measures:"Verificar cifrado de disco e inventario de dispositivos asignados."},
+    {id:"RSK-2026-007",title:"Demora en aplicación de parches",category:"Vulnerabilidades",probability:4,impact:3,owner:"Carlos Ruiz",assetId:"AST-004",treatment:"Mitigar",measures:"Definir calendario de mantenimiento y priorizar activos críticos."}
+  ];
+  const initialAlerts = [
+    {id:"ALT-2026-031",title:"Intento de acceso no autorizado",category:"Incidente",severity:"Crítica",status:"No leída",when:"Hoy, 09:42",description:"Se detectaron intentos de inicio de sesión desde una ubicación inusual.",reference:"INC-2026-048"},
+    {id:"ALT-2026-030",title:"Vulnerabilidad crítica por corregir",category:"Vulnerabilidad",severity:"Crítica",status:"No leída",when:"Hoy, 08:20",description:"OpenSSL requiere actualización en el servidor de producción.",reference:"VUL-2026-008"},
+    {id:"ALT-2026-029",title:"Parche pendiente en firewall",category:"Vulnerabilidad",severity:"Alta",status:"En revisión",when:"Ayer, 15:10",description:"Hay una actualización recomendada pendiente de aplicación.",reference:"VUL-2026-007"},
+    {id:"ALT-2026-028",title:"Revisión periódica de activo próxima",category:"Activo",severity:"Media",status:"Leída",when:"Ayer, 11:30",description:"El portátil asignado a Finanzas está próximo a su revisión periódica.",reference:"AST-002"},
+    {id:"ALT-2026-027",title:"Riesgo de continuidad requiere seguimiento",category:"Riesgo",severity:"Alta",status:"En revisión",when:"24 nov. 2026",description:"La disponibilidad del servicio principal requiere validar medidas preventivas.",reference:"RSK-2026-011"}
+  ];
+  const initialAudit = [
+    {id:"AUD-2026-112",user:"Nash Méndez",action:"Actualizó seguimiento de incidente",target:"INC-2026-048 · Intento de acceso no autorizado",when:"27 nov. 2026 · 09:42",detail:"Se agregó una nota de seguimiento y se confirmó la asignación del caso."},
+    {id:"AUD-2026-111",user:"Luis Ramírez",action:"Consultó inventario de activos",target:"Módulo de activos",when:"27 nov. 2026 · 09:18",detail:"Consulta de registros de inventario durante una revisión operativa."},
+    {id:"AUD-2026-110",user:"Ana Torres",action:"Registró alerta de phishing",target:"INC-2026-047 · Correo de phishing reportado",when:"27 nov. 2026 · 08:55",detail:"Se registró una alerta visual de demostración para seguimiento del reporte."},
+    {id:"AUD-2026-109",user:"Marta Santos",action:"Revisó activo tecnológico",target:"AST-003 · Firewall perimetral",when:"26 nov. 2026 · 16:04",detail:"Consulta de estado, responsable y criticidad del dispositivo."},
+    {id:"AUD-2026-108",user:"Carlos Ruiz",action:"Actualizó vulnerabilidad",target:"VUL-2026-007 · Parche de sistema operativo pendiente",when:"26 nov. 2026 · 14:35",detail:"El estado se movió a remediación y se confirmó el responsable asignado."},
+    {id:"AUD-2026-107",user:"Nash Méndez",action:"Consultó matriz de riesgos",target:"Módulo de riesgos",when:"26 nov. 2026 · 11:22",detail:"Consulta de la matriz visual de evaluación de demostración."}
+  ];
 
   // Repositorio en memoria para la demostración. Se sustituirá por un adaptador de servicios cuando Jen publique la integración del backend; aquí no se asume ningún endpoint.
   const demoRepository = {assets:initialAssets, incidents:initialIncidents};
-  const state = {assets:demoRepository.assets.map(item => ({...item})), incidents:demoRepository.incidents.map(item => ({...item,history:item.history.map(entry => ({...entry}))}))};
+  const state = {assets:demoRepository.assets.map(item => ({...item})), incidents:demoRepository.incidents.map(item => ({...item,history:item.history.map(entry => ({...entry}))})), vulnerabilities:initialVulnerabilities.map(item=>({...item})), risks:initialRisks.map(item=>({...item})), alerts:initialAlerts.map(item=>({...item})), audit:initialAudit.map(item=>({...item}))};
   const dashboardView = document.getElementById("dashboard");
   const moduleView = document.getElementById("module-view");
   const sidebar = document.getElementById("sidebar");
   const backdrop = document.getElementById("sidebar-backdrop");
   const menuToggle = document.getElementById("menu-toggle");
-  const pageNames = {dashboard:"Resumen",assets:"Activos",incidents:"Incidentes"};
+  const pageNames = {dashboard:"Resumen",assets:"Activos",incidents:"Incidentes",vulnerabilities:"Vulnerabilidades",risks:"Riesgos",alerts:"Alertas",audit:"Auditoría"};
   const people = ["Nash Méndez","Laura Méndez","Carlos Ruiz","Ana Torres","Luis Ramírez","Marta Santos"];
   const categories = ["Servidor","Portátil","Red","Base de datos","Software","Otro"];
   const incidentCategories = ["Acceso no autorizado","Malware","Phishing","Actividad sospechosa","Disponibilidad","Pérdida de dispositivo","Otro"];
@@ -33,6 +62,9 @@
   const incidentStatuses = ["Abierto","En investigación","Contenido","Resuelto"];
   const severities = ["Crítica","Alta","Media","Baja"];
   const priorities = ["Urgente","Alta","Normal","Baja"];
+  const vulnerabilityStatuses = ["Abierta","En remediación","Resuelta"];
+  const riskCategories = ["Confidencialidad","Integridad","Disponibilidad","Continuidad","Activos","Vulnerabilidades","Cumplimiento","Otro"];
+  const riskTreatments = ["Mitigar","Reducir","Transferir","Aceptar"];
   const escapeHtml = value => String(value == null ? "" : value).replace(/[&<>"']/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
   const icon = id => '<svg class="icon" aria-hidden="true"><use href="#i-' + id + '"></use></svg>';
   const getAsset = id => state.assets.find(item => item.id === id);
@@ -365,6 +397,9 @@
     } else if (page === "incidents") {
       moduleView.innerHTML = renderIncidents();
       filterIncidents();
+    } else if (["vulnerabilities","risks","alerts","audit"].includes(page) && window.SBPhase34) {
+      moduleView.innerHTML = window.SBPhase34.render(page);
+      window.SBPhase34.activate(page);
     }
     if (page !== "dashboard") window.scrollTo({top:0,behavior:"smooth"});
   }
@@ -470,3 +505,4 @@
   ensureDialogAndToasts();
   renderRoute();
 })();
+
